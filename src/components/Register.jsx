@@ -9,8 +9,7 @@ function Register() {
     role: 'user',
     name: '',
     phone: '',
-    vehicle_number: '',
-    vehicle_model: ''
+    vehicle_number: ''
   });
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
@@ -37,17 +36,16 @@ function Register() {
         delete data.name;
         delete data.phone;
         delete data.vehicle_number;
-        delete data.vehicle_model;
       }
 
-      await axios.post('http://localhost:5000/api/auth/register', data);
+      await axios.post('https://cab-ride-five.vercel.app/api/auth/register', data);
       
-      setSuccess('Registration successful! Redirecting to login...');
+      setSuccess('Registration successful! Redirecting...');
       setTimeout(() => {
         navigate('/login');
       }, 2000);
     } catch (err) {
-      setError(err.response?.data?.error || 'Registration failed. Please try again.');
+      setError(err.response?.data?.error || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -55,30 +53,28 @@ function Register() {
 
   return (
     <div className="min-h-screen flex items-center justify-center px-4 py-8">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-2xl p-8">
+      <div className="max-w-md w-full bg-white rounded-lg shadow-xl p-8">
         <div className="text-center mb-8">
-          <div className="text-6xl mb-4">📝</div>
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent">
-            Create Account
-          </h2>
-          <p className="text-gray-600 mt-2">Join the cab system today</p>
+          <div className="text-5xl mb-3">📝</div>
+          <h2 className="text-3xl font-bold text-gray-800">Create Account</h2>
+          <p className="text-gray-600 mt-2">Join the cab system</p>
         </div>
 
         {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+          <div className="mb-4 p-3 bg-red-100 text-red-700 rounded-lg text-sm">
             {error}
           </div>
         )}
 
         {success && (
-          <div className="mb-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded-lg">
+          <div className="mb-4 p-3 bg-green-100 text-green-700 rounded-lg text-sm">
             {success}
           </div>
         )}
 
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">Username *</label>
+            <label className="block text-gray-700 font-semibold mb-2">Username</label>
             <input
               type="text"
               name="username"
@@ -91,7 +87,7 @@ function Register() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">Password *</label>
+            <label className="block text-gray-700 font-semibold mb-2">Password</label>
             <input
               type="password"
               name="password"
@@ -104,22 +100,22 @@ function Register() {
           </div>
 
           <div className="mb-4">
-            <label className="block text-gray-700 font-semibold mb-2">Role *</label>
+            <label className="block text-gray-700 font-semibold mb-2">Role</label>
             <select
               name="role"
               value={formData.role}
               onChange={handleChange}
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
             >
-              <option value="user">👤 User (Book Rides)</option>
-              <option value="driver">🚗 Driver (Drive & Earn)</option>
+              <option value="user">User</option>
+              <option value="driver">Driver</option>
             </select>
           </div>
 
           {formData.role === 'driver' && (
             <div className="space-y-4">
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">Full Name *</label>
+                <label className="block text-gray-700 font-semibold mb-2">Full Name</label>
                 <input
                   type="text"
                   name="name"
@@ -131,7 +127,7 @@ function Register() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">Phone Number *</label>
+                <label className="block text-gray-700 font-semibold mb-2">Phone Number</label>
                 <input
                   type="tel"
                   name="phone"
@@ -143,7 +139,7 @@ function Register() {
                 />
               </div>
               <div>
-                <label className="block text-gray-700 font-semibold mb-2">Vehicle Number *</label>
+                <label className="block text-gray-700 font-semibold mb-2">Vehicle Number</label>
                 <input
                   type="text"
                   name="vehicle_number"
@@ -154,40 +150,22 @@ function Register() {
                   placeholder="e.g., KA01AB1234"
                 />
               </div>
-              <div>
-                <label className="block text-gray-700 font-semibold mb-2">Vehicle Model</label>
-                <input
-                  type="text"
-                  name="vehicle_model"
-                  value={formData.vehicle_model}
-                  onChange={handleChange}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent outline-none"
-                  placeholder="e.g., Toyota Camry"
-                />
-              </div>
             </div>
           )}
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full mt-6 bg-gradient-to-r from-purple-600 to-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:from-purple-700 hover:to-blue-600 transition-all duration-200 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full mt-6 bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 rounded-lg transition disabled:opacity-50"
           >
-            {loading ? (
-              <div className="flex items-center justify-center">
-                <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-2"></div>
-                Registering...
-              </div>
-            ) : (
-              'Register'
-            )}
+            {loading ? 'Registering...' : 'Register'}
           </button>
         </form>
 
         <p className="text-center mt-6 text-gray-600">
           Already have an account?{' '}
           <Link to="/login" className="text-purple-600 hover:text-purple-700 font-semibold">
-            Login here
+            Login
           </Link>
         </p>
       </div>
