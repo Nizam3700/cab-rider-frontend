@@ -30,7 +30,7 @@ function DriverDashboard() {
 
   const fetchDriverData = async () => {
     try {
-      const profileRes = await axios.get('https://cab-ride-five.vercel.app/api/drivers/profile', {
+      const profileRes = await axios.get('https://cab-ride.onrender.com/api/drivers/profile', {
         headers: { Authorization: `Bearer ${token}` }
       });
       
@@ -59,7 +59,7 @@ function DriverDashboard() {
 
   const fetchActiveRide = async () => {
     try {
-      const response = await axios.get('https://cab-ride-five.vercel.app/api/rides/active', {
+      const response = await axios.get('https://cab-ride.onrender.com/api/rides/active', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setActiveRide(response.data.active_ride);
@@ -70,7 +70,7 @@ function DriverDashboard() {
 
   const fetchRideHistory = async () => {
     try {
-      const response = await axios.get('https://cab-ride-five.vercel.app/api/rides/history', {
+      const response = await axios.get('https://cab-ride.onrender.com/api/rides/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRides(response.data);
@@ -84,7 +84,7 @@ function DriverDashboard() {
     setLoading(true);
     
     try {
-      await axios.post('https://cab-ride-five.vercel.app/api/drivers/location',
+      await axios.post('https://cab-ride.onrender.com/api/drivers/location',
         { x: parseFloat(location.x), y: parseFloat(location.y) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -100,7 +100,7 @@ function DriverDashboard() {
 
   const updateAvailability = async () => {
     try {
-      await axios.put('https://cab-ride-five.vercel.app/api/drivers/availability',
+      await axios.put('https://cab-ride.onrender.com/api/drivers/availability',
         { is_available: !isAvailable },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -120,7 +120,7 @@ function DriverDashboard() {
     if (!dropX || !dropY) return;
     
     try {
-      await axios.post(`https://cab-ride-five.vercel.app/api/rides/${rideId}/complete`,
+      await axios.post(`https://cab-ride.onrender.com/api/rides/${rideId}/complete`,
         { drop_x: parseFloat(dropX), drop_y: parseFloat(dropY) },
         { headers: { Authorization: `Bearer ${token}` } }
       );

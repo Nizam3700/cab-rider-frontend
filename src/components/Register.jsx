@@ -38,7 +38,7 @@ function Register() {
         delete data.vehicle_number;
       }
 
-      await axios.post('https://cab-ride-five.vercel.app/api/auth/register', data);
+      await axios.post('https://cab-ride.onrender.com/api/auth/register', data);
       
       setSuccess('Registration successful! Redirecting...');
       setTimeout(() => {

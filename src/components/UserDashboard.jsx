@@ -21,7 +21,7 @@ function UserDashboard() {
 
   const fetchRideHistory = async () => {
     try {
-      const response = await axios.get('https://cab-ride-five.vercel.app/api/rides/history', {
+      const response = await axios.get('https://cab-ride.onrender.com/api/rides/history', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setRides(response.data);
@@ -34,7 +34,7 @@ function UserDashboard() {
 
   const fetchActiveRide = async () => {
     try {
-      const response = await axios.get('https://cab-ride-five.vercel.app/api/rides/active', {
+      const response = await axios.get('https://cab-ride.onrender.com/api/rides/active', {
         headers: { Authorization: `Bearer ${token}` }
       });
       setActiveRide(response.data.active_ride);
@@ -49,7 +49,7 @@ function UserDashboard() {
     setMessage('');
 
     try {
-      const response = await axios.post('https://cab-ride-five.vercel.app/api/rides/request',
+      const response = await axios.post('https://cab-ride.onrender.com/api/rides/request',
         { pickup_x: parseFloat(pickupX), pickup_y: parseFloat(pickupY) },
         { headers: { Authorization: `Bearer ${token}` } }
       );
