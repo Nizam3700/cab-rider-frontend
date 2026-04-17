@@ -1,16 +1,46 @@
-# React + Vite
+# 🚕 Cab Rider - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern ride-hailing application frontend that connects users with nearby drivers. Built with React and Tailwind CSS.
 
-Currently, two official plugins are available:
+## 🌐 Live Demo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Frontend:** [https://cab-rider-frontend.vercel.app](https://cab-rider-frontend.vercel.app)
 
-## React Compiler
+## 📱 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **User Authentication** - Register/Login as User or Driver
+- **Request Ride** - Users can request rides with pickup coordinates
+- **Real-time Assignment** - Automatically assigns nearest available driver
+- **Active Ride Tracking** - View current ride status and driver details
+- **Ride History** - Complete history of all past rides
+- **Driver Dashboard** - Drivers can update location and availability
+- **Responsive Design** - Works on desktop and mobile devices
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- **React 18** - UI library
+- **Tailwind CSS** - Styling and animations
+- **Axios** - API requests
+- **React Router DOM** - Navigation and routing
+- **Vite** - Build tool and development server
+- **Aiven Cloud Mysql** - Database
+
+
+## 🚀 Getting Started
+
+### Prerequisites
+- Node.js (v18 or higher)
+- npm or yarn
+
+### Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/nizam3700/cab-rider-frontend.git
+cd cab-rider-frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
